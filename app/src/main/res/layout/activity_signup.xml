@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.LoginActivity">
+
+    <ImageView
+            android:id="@+id/bookIconImageView"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@null"
+            android:src="@drawable/hummingbird"/>
+    <TextView
+            android:id="@+id/WelcomeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_alignStart="@id/bookIconImageView"
+            android:layout_below="@id/bookIconImageView"
+            android:text="@string/welcome"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/SignupButton"
+            android:layout_below="@id/WelcomeTextView"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+        <ImageView
+                android:id="@+id/profile_swan"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/origami_swan_circle"
+                android:contentDescription="@string/user_profile_pic"/>
+        <Button
+                android:id="@+id/chooseProfileImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_profile_image"
+                android:textAllCaps="false"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_name"
+                android:id = "@+id/addName"
+                android:focusable = "true"
+                android:importantForAutofill="no"
+                android:inputType="text"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/alias"
+                android:id = "@+id/editText"
+                android:focusable = "true"
+                android:importantForAutofill="no"
+                android:inputType="text"/>
+
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/editText2"
+                android:hint="@string/password"
+                android:importantForAutofill="no"/>
+
+    </LinearLayout>
+    <Button
+            android:id="@+id/SignupButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@id/confettiTextView"
+            android:layout_marginHorizontal="16dp"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+
+
+    <TextView
+            android:id="@+id/confettiTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/throw_confetti"
+            android:textSize="15sp" />
+
+
+
+
+
+
+
+</RelativeLayout>
