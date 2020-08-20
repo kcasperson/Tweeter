@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_in">Log In</string>
+    <string name="sign_out">X</string>
+    <string name="welcome_back">Welcome Back</string>
+</resources>
