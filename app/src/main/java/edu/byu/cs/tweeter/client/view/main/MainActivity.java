@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
     protected FloatingActionButton fab2;
     protected FloatingActionButton fab3;
     protected FloatingActionButton fab4;
+    private boolean stalking_mode;
     private User stalkee;
     private User user;
     private AuthToken authToken;
@@ -68,16 +69,29 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
 
         stalkee = (User) getIntent().getSerializableExtra(STALKED_USER_KEY);
         if(stalkee == null) {
-            throw new RuntimeException("Stalkee not passed to activity");
+            stalking_mode = false;
+            System.out.println("No Stalkee passed to main activity");
+//            throw new RuntimeException("Stalkee not passed to activity");
         }
+        else stalking_mode = true;
 
         authToken = (AuthToken) getIntent().getSerializableExtra(AUTH_TOKEN_KEY);
         if(authToken == null) {
             throw new RuntimeException("Auth token not passed to activity");
         }
 
-        //TODO change user to stalkee on next line
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), user, authToken);
+        //DONE: change user to stalkee on next line when stalking, user otherwise
+        //TODO test this
+        SectionsPagerAdapter sectionsPagerAdapter;
+        if(stalking_mode){
+            sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), stalkee, authToken);
+        }
+        else {
+            System.out.println();
+            System.out.println("NOT STALKING");
+            System.out.println();
+            sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), user, authToken);
+        }
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
