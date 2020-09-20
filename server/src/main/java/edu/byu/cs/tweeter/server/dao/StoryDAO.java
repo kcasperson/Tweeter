@@ -33,13 +33,13 @@ public class StoryDAO {
 
 
 
-        String MALE_IMAGE_URL = "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png";
-        // Add the test user and make him follow everyone
-        User testUser = new User("Test", "User", MALE_IMAGE_URL);
+//        String MALE_IMAGE_URL = "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png";
+//        // Add the test user and make him follow everyone
+//        User testUser = new User("Test", "User", MALE_IMAGE_URL);
 
         Map<User, List<Status>> storyByUser = Initializer.getInstance().getStoryByUser();
-//        List<Status> fullStory = storyByUser.get(request.getUser());
-        List<Status> fullStory = storyByUser.get(testUser);
+        List<Status> fullStory = storyByUser.get(request.getUser());
+//        List<Status> fullStory = storyByUser.get(testUser);
         List<Status> responseStory = new ArrayList<>(request.getLimit());
 
         System.out.println(fullStory.toString());

@@ -40,6 +40,10 @@ public class Initializer {
         return users;
     }
 
+    public void addUser(User user) {
+        users.add(user);
+    }
+
     public Map<User, List<User>> getFolloweesByFollower() {
         return followeesByFollower;
     }

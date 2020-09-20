@@ -6,6 +6,7 @@ import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.service.SignupService;
 import edu.byu.cs.tweeter.model.service.request.SignupRequest;
 import edu.byu.cs.tweeter.model.service.response.SignupResponse;
+import edu.byu.cs.tweeter.server.dao.dummy.Initializer;
 
 import java.io.IOException;
 
@@ -28,8 +29,16 @@ public class SignupServiceImpl implements SignupService {
 //                request.getAlias(),
 //                request.getProfile());
 
-        User user = new User("Test", "User",
+        User user = new User(request.getFirstName(),
+                request.getLastName(),
+                request.getAlias(),
+                //request.getImageURL());
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
+        Initializer.getInstance().addUser(user);
         return new SignupResponse(user, new AuthToken());
+
+//        User user = new User("Test", "User",
+//                "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
+//        return new SignupResponse(user, new AuthToken());
     }
 }
