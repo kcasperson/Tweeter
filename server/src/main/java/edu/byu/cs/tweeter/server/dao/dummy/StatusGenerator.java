@@ -40,9 +40,6 @@ public class StatusGenerator {
                 "Wafer ice cream liquorice icing oat cake.";
 
         String[] cupcakeSentences = cupcakeIpsum.split("\\.");
-
-        System.out.println(cupcakeSentences);
-
         int rand_i = random.nextInt(cupcakeSentences.length);
         return cupcakeSentences[rand_i];
     }
