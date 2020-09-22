@@ -31,13 +31,13 @@ public class FeedDAO {
 
 
 
-        String MALE_IMAGE_URL = "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png";
-        // Add the test user and make him follow everyone
-        User testUser = new User("Test", "User", MALE_IMAGE_URL);
+//        String MALE_IMAGE_URL = "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png";
+//        // Add the test user and make him follow everyone
+//        User testUser = new User("Test", "User", MALE_IMAGE_URL);
 
         Map<User, List<Status>> feedByUser = Initializer.getInstance().getFeedByUser();
-//        List<Status> fullFeed = feedByUser.get(request.getUser());
-        List<Status> fullFeed = feedByUser.get(testUser);
+        List<Status> fullFeed = feedByUser.get(request.getUser());
+//        List<Status> fullFeed = feedByUser.get(testUser);
         List<Status> responseFeed = new ArrayList<>(request.getLimit());
 
         System.out.println(fullFeed.toString());

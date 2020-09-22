@@ -100,7 +100,6 @@ class ClientCommunicator {
                     System.out.println("*******");
                     T deserial =  JsonSerializer.deserialize(responseString, returnType);
                     System.out.println(deserial);
-                    System.out.println("******* ^ deserialized *****");
                     return deserial;
                 case HttpURLConnection.HTTP_BAD_REQUEST:
                     ErrorResponse errorResponse = getErrorResponse(connection);
