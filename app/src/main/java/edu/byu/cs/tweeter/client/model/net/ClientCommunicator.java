@@ -159,4 +159,7 @@ class ClientCommunicator {
         private String errorType;
         private List<String> stackTrace;
     }
+
+
+
 }

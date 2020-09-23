@@ -1,8 +1,15 @@
 package edu.byu.cs.tweeter.client.model.net;
 
 import java.io.IOException;
+import java.util.List;
 
+import android.os.Build;
+import androidx.annotation.RequiresApi;
+import com.google.gson.Gson;
+import edu.byu.cs.tweeter.client.model.net.dummy.Initializer;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
+import edu.byu.cs.tweeter.model.domain.Follow;
+import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.model.service.request.*;
 import edu.byu.cs.tweeter.model.service.request.menu.FollowRequest;

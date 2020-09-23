@@ -1,11 +1,16 @@
-package edu.byu.cs.tweeter.server.dao.dummy;
+package edu.byu.cs.tweeter.client.model.net.dummy;
 
+import android.os.Build;
+import androidx.annotation.RequiresApi;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import edu.byu.cs.tweeter.model.domain.Follow;
 import edu.byu.cs.tweeter.model.domain.Status;
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.service.request.menu.FollowRequest;
 import edu.byu.cs.tweeter.model.service.response.menu.FollowResponse;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +29,7 @@ public class Initializer {
 
     private static Initializer initializer;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static Initializer getInstance(){
         if (initializer == null){
             initializer =  new Initializer();
@@ -61,6 +66,7 @@ public class Initializer {
         return feedByUser;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initialize() {
         follows = generateUsersAndFollows(100,
                 0, 50, FollowGenerator.Sort.FOLLOWER_FOLLOWEE);
@@ -78,7 +84,7 @@ public class Initializer {
         return follows;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private Map<User, List<User>> generateFolloweesByFollower(){
         Map<User, List<User>> fbfr = new HashMap<>();
         // Populate a map of followees, keyed by follower so we can easily handle followee requests
@@ -89,7 +95,7 @@ public class Initializer {
         return fbfr;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private Map<User, List<User>> generateFollowersByFollowee() {
         Map<User, List<User>> followersByFolloweeMap = new HashMap<>();
         // Populate a map of followers, keyed by followee so we can easily handle follower requests
@@ -115,6 +121,7 @@ public class Initializer {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public FollowResponse changeFollow(FollowRequest request){
         List<User> myFollowees = followeesByFollower.get(request.getCurUser());
         boolean wantsToFollow = request.wantsToFollow();

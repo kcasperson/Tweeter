@@ -1,4 +1,4 @@
-package edu.byu.cs.tweeter.server.dao.dummy;
+package edu.byu.cs.tweeter.client.model.net.dummy;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A temporary class that generates and returns {@link User} objects. This class may be removed when

@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
             throw new RuntimeException("Auth token not passed to activity");
         }
 
-        //DONE: change user to stalkee on next line when stalking, user otherwise
+
         //TODO test this
         SectionsPagerAdapter sectionsPagerAdapter;
         if(stalking_mode){
-            sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), stalkee, authToken);
+            sectionsPagerAdapter = new StalkSectionsPagerAdapter(this, getSupportFragmentManager(), stalkee, authToken);
         }
         else {
             System.out.println();
