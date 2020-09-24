@@ -61,6 +61,7 @@ public class Initializer {
         return feedByUser;
     }
 
+
     private void initialize() {
         follows = generateUsersAndFollows(100,
                 0, 50, FollowGenerator.Sort.FOLLOWER_FOLLOWEE);
@@ -114,6 +115,7 @@ public class Initializer {
             feedByUser.put(curUser, feed);
         }
     }
+
 
     public FollowResponse changeFollow(FollowRequest request){
         List<User> myFollowees = followeesByFollower.get(request.getCurUser());

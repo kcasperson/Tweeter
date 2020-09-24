@@ -138,13 +138,21 @@ public class ServerFacade {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public StoryResponse getStory(StoryRequest request, String urlPath) throws IOException, TweeterRemoteException {
         StoryResponse response = clientCommunicator.doPost(urlPath, request, null, StoryResponse.class);
 
         if(response.isSuccess()) {
+            create();
             return response;
         } else {
             throw new RuntimeException(response.getMessage());
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void create(){
+        Initializer init = Initializer.getInstance();
+        init.getFollows();
     }
 }
