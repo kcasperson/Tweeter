@@ -72,7 +72,7 @@ public class Initializer {
                                                 int maxFollowersPerUser, FollowGenerator.Sort sortOrder) {
         users = UserGenerator.getInstance().generateUsers(userCount);
         List<Follow> follows = FollowGenerator.getInstance().generateFollowsForUsers(users, minFollowersPerUser, maxFollowersPerUser, sortOrder);
-        users.add(testUser);
+//        users.add(testUser); //only needed when users are dynamically generated
         return follows;
     }
 
