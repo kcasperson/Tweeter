@@ -13,6 +13,14 @@ public class SignupRequest {
 
     private SignupRequest() {}
 
+    public SignupRequest(String first_name, String last_name, String alias, String password) {
+        this.firstName = first_name;
+        this.lastName = last_name;
+        this.alias = alias;
+        this.password = password;
+
+    }
+
     public SignupRequest(String first_name, String last_name, String alias, String password, byte[] profile_pic) {
         this.firstName = first_name;
         this.lastName = last_name;

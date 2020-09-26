@@ -5,10 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import edu.byu.cs.tweeter.R;
 import edu.byu.cs.tweeter.client.view.main.followers.FollowersFragment;
-import edu.byu.cs.tweeter.client.view.main.following.FeedFragment;
 import edu.byu.cs.tweeter.client.view.main.following.FollowingFragment;
 import edu.byu.cs.tweeter.client.view.main.userNavigate.StoryFragment;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
@@ -19,21 +17,20 @@ import org.jetbrains.annotations.NotNull;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to one of the sections/tabs/pages
  * of the Main Activity.
  */
-class SectionsPagerAdapter extends FragmentPagerAdapter {
+class StalkSectionsPagerAdapter extends SectionsPagerAdapter {
 
-    private static final int FEED_FRAGMENT_POSITION = 0;
-    private static final int STORY_FRAGMENT_POSITION = 1;
-    private static final int FOLLOWING_FRAGMENT_POSITION = 2;
-    private static final int FOLLOWERS_FRAGMENT_POSITION = 3;
+    private static final int STORY_FRAGMENT_POSITION = 0;
+    private static final int FOLLOWING_FRAGMENT_POSITION = 1;
+    private static final int FOLLOWERS_FRAGMENT_POSITION = 2;
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.feedTabTitle, R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
+    private static final int[] TAB_TITLES = new int[]{R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
     private final Context mContext;
-    private final User user; //in this case, this is the user that is logged in
+    private final User user; //in this case, this is the user we are wanting to see, not the one logged in
     private final AuthToken authToken;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, User user, AuthToken authToken) {
-        super(fm);
+    public StalkSectionsPagerAdapter(Context context, FragmentManager fm, User user, AuthToken authToken) {
+        super(context,fm,user,authToken);
         mContext = context;
         this.user = user;
         this.authToken = authToken;
@@ -46,12 +43,9 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
             return FollowingFragment.newInstance(user, authToken,mContext);
         } else if(position == FOLLOWERS_FRAGMENT_POSITION) {
             return FollowersFragment.newInstance(user, authToken,mContext);
-        } else if(position == FEED_FRAGMENT_POSITION) {
-            return FeedFragment.newInstance(user, authToken);
         } else if(position == STORY_FRAGMENT_POSITION){
             return StoryFragment.newInstance(user,authToken);
         }
-
         else {
             return PlaceholderFragment.newInstance(position + 1);
         }
@@ -65,7 +59,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 4 total pages.
-        return 4;
+        // Show 3 total pages.
+        return 3;
     }
 }

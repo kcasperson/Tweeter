@@ -15,8 +15,8 @@ public class SignupServiceProxy implements SignupService {
     private static final String URL_PATH = "/signup";
 
     public SignupResponse signup(SignupRequest signupRequest) throws IOException, TweeterRemoteException {
-        ServerFacade ServerFacade = getServerFacade();
-        SignupResponse signupResponse = ServerFacade.signup(signupRequest, URL_PATH);
+        ServerFacade serverFacade = getServerFacade();
+        SignupResponse signupResponse = serverFacade.signup(signupRequest, URL_PATH);
 
         if(signupResponse.isSuccess()) {
             loadImage(signupResponse.getUser());
