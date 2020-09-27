@@ -9,6 +9,8 @@ public class SignoutRequest {
     private User user;
     private AuthToken authToken;
 
+    private SignoutRequest() {}
+
     public SignoutRequest(User user, AuthToken authToken) {
         this.user = user;
         this.authToken = authToken;
