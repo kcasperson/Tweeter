@@ -98,7 +98,7 @@ public class UserView extends MainActivity implements FollowPresenter.View, Foll
             @Override
             public void onClick(View view) {
                 FollowUnfollowTask task = new FollowUnfollowTask(presenter, UserView.this);
-                FollowRequest request = new FollowRequest(stalkee, false);
+                FollowRequest request = new FollowRequest(stalkee, true);
                 task.execute(request);
 
                 Snackbar.make(view, stalkee.getName() + " followed.", Snackbar.LENGTH_LONG)

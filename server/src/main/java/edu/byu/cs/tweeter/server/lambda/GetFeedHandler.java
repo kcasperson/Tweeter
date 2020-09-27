@@ -25,11 +25,6 @@ public class GetFeedHandler implements RequestHandler<FeedRequest, FeedResponse>
     public FeedResponse handleRequest(FeedRequest request, Context context) {
 
         System.out.println("*******************In feed handler.**************************");
-        LambdaLogger logger = context.getLogger();
-        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
-        logger.log("CONTEXT: " + gson.toJson(context));
-        // process event
-        logger.log("EVENT: " + gson.toJson(request));
         FeedServiceImpl service = new FeedServiceImpl();
         return service.getFeed(request);
     }

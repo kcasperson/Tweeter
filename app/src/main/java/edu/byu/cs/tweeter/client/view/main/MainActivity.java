@@ -80,11 +80,10 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
             throw new RuntimeException("Auth token not passed to activity");
         }
 
-        //DONE: change user to stalkee on next line when stalking, user otherwise
-        //TODO test this
+
         SectionsPagerAdapter sectionsPagerAdapter;
         if(stalking_mode){
-            sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), stalkee, authToken);
+            sectionsPagerAdapter = new StalkSectionsPagerAdapter(this, getSupportFragmentManager(), stalkee, authToken);
         }
         else {
             System.out.println();
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("SIGNOUT CLICKED");
                 SignoutRequest request = new SignoutRequest(user, authToken);
                 SignoutTask signoutTask = new SignoutTask(presenter, MainActivity.this);
                 signoutTask.execute(request);
@@ -116,8 +116,10 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
         FloatingActionButton fab_menu = (FloatingActionButton) findViewById(R.id.fab_menu);
         fab1 = (FloatingActionButton) findViewById(R.id.fab_profile);
         fab2 = (FloatingActionButton) findViewById(R.id.fab_tweet);
-        fab3 = (FloatingActionButton) findViewById(R.id.unfollow);
-        fab4 = (FloatingActionButton) findViewById(R.id.follow);
+        if(stalking_mode){
+            fab3 = (FloatingActionButton) findViewById(R.id.unfollow);
+            fab4 = (FloatingActionButton) findViewById(R.id.follow);
+        }
         fab_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
 //                        .setAction("Action", null).show();
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 intent.putExtra(MainActivity.CURRENT_USER_KEY, user);
-                intent.putExtra(MainActivity.STALKED_USER_KEY, user);
                 intent.putExtra(MainActivity.AUTH_TOKEN_KEY, authToken);
                 startActivity(intent);
             }
@@ -150,39 +151,45 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
             }
         });
 
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "You cannot unfollow yourself", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        if(stalking_mode){
+            fab3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "You cannot unfollow yourself", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
 
-            }
-        });
+                }
+            });
 
-        fab4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "You cannot follow yourself", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            fab4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "You cannot follow yourself", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
 
-            }
-        });
+                }
+            });
+        }
     }
 
     protected void showFABMenu(){
         isFABOpen=true;
         fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
         fab2.animate().translationY(-getResources().getDimension(R.dimen.standard_105));
-        fab3.animate().translationY(-getResources().getDimension(R.dimen.standard_155));
-        fab4.animate().translationY(-getResources().getDimension(R.dimen.standard_205));
+        if(stalking_mode){
+            fab3.animate().translationY(-getResources().getDimension(R.dimen.standard_155));
+            fab4.animate().translationY(-getResources().getDimension(R.dimen.standard_205));
+        }
     }
 
     protected void closeFABMenu(){
         isFABOpen=false;
         fab1.animate().translationY(0);
         fab2.animate().translationY(0);
-        fab3.animate().translationY(0);
-        fab4.animate().translationY(0);
+        if(stalking_mode){
+            fab3.animate().translationY(0);
+            fab4.animate().translationY(0);
+        }
     }
 
     private void setText(){
@@ -207,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements SignoutPresenter.
 
     @Override
     public void signoutSuccessful(SignoutResponse signoutResponse) {
+        authToken.decommission();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }

@@ -26,11 +26,6 @@ public class GetFollowersHandler implements RequestHandler<FollowersRequest, Fol
      */
     @Override
     public FollowersResponse handleRequest(FollowersRequest request, Context context) {
-        LambdaLogger logger = context.getLogger();
-        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
-        logger.log("CONTEXT: " + gson.toJson(context));
-        // process event
-        logger.log("EVENT: " + gson.toJson(request));
         FollowersServiceImpl service = new FollowersServiceImpl();
         return service.getFollowers(request);
     }
