@@ -28,11 +28,6 @@ public class GetFollowingHandler implements RequestHandler<FollowingRequest, Fol
      */
     @Override
     public FollowingResponse handleRequest(FollowingRequest request, Context context) {
-        LambdaLogger logger = context.getLogger();
-        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
-        logger.log("CONTEXT: " + gson.toJson(context));
-        // process event
-        logger.log("EVENT: " + gson.toJson(request));
         FollowingServiceImpl service = new FollowingServiceImpl();
         return service.getFollowees(request);
     }

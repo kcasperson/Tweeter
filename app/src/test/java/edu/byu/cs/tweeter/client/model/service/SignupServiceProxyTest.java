@@ -22,9 +22,7 @@ public class SignupServiceProxyTest {
         SignupResponse signupResponse = null;
         try {
             signupResponse = serverFacade.signup(req, URL_PATH);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TweeterRemoteException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

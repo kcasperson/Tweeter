@@ -19,7 +19,22 @@ public class FollowServiceProxyTest {
     public void unFollow() {
         User user = new User("Test","User","https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
 
-        FollowRequest req = new FollowRequest(user, new User("","",""), false);
+        FollowRequest req = new FollowRequest(user, new User("Alpha","Kehr",""), false);
+        ServerFacade serverFacade = new ServerFacade();
+        FollowResponse response = null;
+        try {
+            response = serverFacade.changeFollow(req, URL_PATH);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertNotNull(response);
+    }
+
+    @Test
+    public void follow() {
+        User user = new User("Test","User","https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
+
+        FollowRequest req = new FollowRequest(user, new User("Alpha","Kehr",""), true);
         ServerFacade serverFacade = new ServerFacade();
         FollowResponse response = null;
         try {

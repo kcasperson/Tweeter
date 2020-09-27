@@ -40,9 +40,9 @@ public class ServerFacade {
     }
 
     public void authorized() throws RuntimeException {
-        if(myAuth == null){
-            throw new RuntimeException("Unauthorized access. Login failed.");
-        }
+//        if(myAuth == null){
+//            throw new RuntimeException("Unauthorized access. Login failed.");
+//        }
     }
 
     /**
