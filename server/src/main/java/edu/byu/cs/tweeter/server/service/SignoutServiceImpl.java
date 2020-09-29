@@ -8,7 +8,7 @@ public class SignoutServiceImpl implements SignoutService {
 
         @Override
         public SignoutResponse signout(SignoutRequest request) {
-            request.getAuthToken().decommission();
+//            request.getAuthToken().decommission();
             return new SignoutResponse(request.getUser());
         }
 
